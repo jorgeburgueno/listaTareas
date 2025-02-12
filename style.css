@@ -7,18 +7,23 @@ body{
 .container {
     width: 80% ;
     margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
 }
 
 .columna {
     background-color: gray;  
-    float: left;
     width: 15%;
     margin-top: 100px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     
 }
 
 .bloque {
-    float: right;
     width: 85%;
     margin-top: 100px;
     background-color: brown;
