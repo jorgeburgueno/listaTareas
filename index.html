@@ -9,30 +9,37 @@
 <body>
     <div class="container"> 
         <div class = "columna">
-            <div class="perfil">Perfil</div>
-            <div class="area-tareas">
-                <form>
-                    <label>Tareas pendientes</label>
-                    <label><input type="radio" name="fecha_pendiente" value="hoy">Hoy</label>
-                    <label><input type="radio" name="fecha_pendiente" value="semana">Esta semana</label>
-                    <label><input type="radio" name="fecha_pendiente" value="todas">Todas</label>
-                </form>
-            </div>
-            
+            <div class="perfil">Perfil</div>            
+                <form class="area-tareas">
+                    <label>Tareas pendientes</label><br>
+                    <label class="radio-option">
+                        <input type="radio" name="fecha_pendiente" value="hoy">Hoy
+                    </label><br>
+                    <label class="radio-option">
+                        <input type="radio" name="fecha_pendiente" value="semana">Esta semana
+                    </label><br>
+                    <label class="radio-option">
+                        <input type="radio" name="fecha_pendiente" value="todas">Todas
+                    </label><br>
+                </form>                     
         </div>
         <div class="bloque">
-            <button class="crear-tarea">nueva tarea</button>           
+            <div class="button-container">
+            <button class="crear-tarea">nueva tarea</button>
+            </div>           
             <div class="display">display</div>            
         </div>
         <div class="nueva-tarea">
-            <form>
+            <fieldset>
+                <legend>Crear nueva tarea</legend>
                 <label for="name">Nombre de tarea</label>
                 <input type="text" id="name" name="name"><br>
                 <label for="fecha_limite">fecha limite:</label><br>
-                <input type="date" id="fecha_limite" name="name"><br>
+                <input type="date" id="fecha_limite" name="fecha_limite"><br>
                 <label for="descripcion">descripcion</label><br>
                 <textarea name="descripcion" id="descripcion" rows="5" cols="30" placeholder="Escribe una descripcion"></textarea>
-            </form>
+                <button type="submit">Agregar tarea</button>
+            </fieldset>
         </div>
     </div>
 </body>
