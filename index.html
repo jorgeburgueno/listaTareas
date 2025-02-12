@@ -10,10 +10,13 @@
     <div class="container"> 
         <div class = "columna">
             <div class="perfil">Perfil</div>
-            <div class="area-tareas">Tareas pendientes
-                <div class="tareas-hoy">Hoy</div>
-                <div class="tareas-semana">Esta Semana</div>
-                <div class="tareas-todas">Todas</div>
+            <div class="area-tareas">
+                <form>
+                    <label>Tareas pendientes</label>
+                    <label><input type="radio" name="fecha_pendiente" value="hoy">Hoy</label>
+                    <label><input type="radio" name="fecha_pendiente" value="semana">Esta semana</label>
+                    <label><input type="radio" name="fecha_pendiente" value="todas">Todas</label>
+                </form>
             </div>
             
         </div>
@@ -21,7 +24,16 @@
             <button class="crear-tarea">nueva tarea</button>           
             <div class="display">display</div>            
         </div>
-        <div class="nueva-tarea"></div>
+        <div class="nueva-tarea">
+            <form>
+                <label for="name">Nombre de tarea</label>
+                <input type="text" id="name" name="name"><br>
+                <label for="fecha_limite">fecha limite:</label><br>
+                <input type="date" id="fecha_limite" name="name"><br>
+                <label for="descripcion">descripcion</label><br>
+                <textarea name="descripcion" id="descripcion" rows="5" cols="30" placeholder="Escribe una descripcion"></textarea>
+            </form>
+        </div>
     </div>
 </body>
 </html>
