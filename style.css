@@ -4,6 +4,39 @@ body{
     font-size: 21px;
 }
 
-.columna {
-    background-color: gray;
+.container {
+    width: 80% ;
+    margin: 0 auto;
 }
+
+.columna {
+    background-color: gray;  
+    float: left;
+    width: 15%;
+    margin-top: 100px;
+    
+}
+
+.bloque {
+    float: right;
+    width: 85%;
+    margin-top: 100px;
+    background-color: brown;
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+
+.crear-tarea {
+    display: flex;
+    justify-content: flex-start;
+    padding: 100px;
+}
+
+.display {
+    display: flex;
+    justify-content: center;
+    padding: 200px;
+}
+
