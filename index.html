@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de tareas</title>
     <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
     <div class="container"> 
@@ -33,7 +34,7 @@
             <fieldset>
                 <legend>Crear nueva tarea</legend>
                 <label for="name">Nombre de tarea</label>
-                <input type="text" id="name" name="name"><br>
+                <input type="text" id="name" name="name" required><br>
                 <label for="fecha_limite">fecha limite:</label><br>
                 <input type="date" id="fecha_limite" name="fecha_limite"><br>
                 <label for="descripcion">descripcion</label><br>
@@ -42,5 +43,6 @@
             </fieldset>
         </div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>

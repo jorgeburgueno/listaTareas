@@ -1,7 +1,11 @@
+
+
 body{
     background-color: black; 
     color: white;
-    font-size: 21px;
+    font-size: 1.125rem;
+    font-family: system-ui;
+    line-height: 1.6rem;
 }
 
 .container {
