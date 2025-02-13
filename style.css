@@ -41,7 +41,7 @@ body{
     max-height: 85vh;
 }
 
-.crear-tarea {
+.btn-crear {
    width: 100px;
    height: 50px;
    padding: 10px 20px;
