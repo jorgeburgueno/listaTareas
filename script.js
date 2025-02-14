@@ -11,11 +11,13 @@ const display = document.querySelector('.display');
 // Manejo de abrir y cerrar ventana de creacion de tareas
 
 btnCrearTarea.addEventListener("click", () => {
-    nuevaTarea.style.display = "block";    
+    nuevaTarea.style.display = "block";
+    
 });
 
 btnCerrarVentana.addEventListener("click", () => {
-    nuevaTarea.style.display = "none";    
+    nuevaTarea.style.display = "none"; 
+    formTarea.reset();   
 });
 
 //Logica de creacion de tareas
@@ -65,6 +67,23 @@ function renderTask(tarea){
     const btnEdit = newTask.querySelector(".btn-editar");
     btnEdit.addEventListener('click', () => {
         nuevaTarea.style.display = "block";
+        const name = document.querySelector('#name').setAttribute("value", `${tarea.name}`);
+        const fecha = document.querySelector('#fecha_limite').setAttribute("value", `${tarea.date}`);
+        const descripcion = document.querySelector('#descripcion'); 
+        descripcion.innerHTML = `${tarea.description}` 
+        
+        formTarea.addEventListener('submit', (event) => {                          
+            newTask.remove();
+            const index = tareas.findIndex(t => 
+                t.name === tarea.name && 
+                t.date === tarea.date && 
+                t.description === tarea.description
+            );    
+            if (index !== -1) {
+            tareas.splice(index, 1);
+            localStorage.setItem("tareas", JSON.stringify(tareas));
+            }  
+            });            
     });
 
 }
