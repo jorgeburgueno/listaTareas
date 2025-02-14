@@ -43,6 +43,19 @@
                 <button type="submit" id="submit">Aceptar</button>
             </form>
         </div>
+        <div class="editar-tarea">
+            <form class="form-tarea">
+                <legend>Editar tarea</legend>
+                <button class="btn-cerrar">X</button>
+                <label for="name">Nombre de tarea</label>
+                <input type="text" id="edit-name" name="name" required><br>
+                <label for="fecha_limite">fecha limite:</label><br>
+                <input type="date" id="edit_fecha_limite" name="fecha_limite"><br>
+                <label for="descripcion">descripcion</label><br>
+                <textarea name="descripcion" id="edit-descripcion" rows="5" cols="30" placeholder="Escribe una descripcion"></textarea>
+                <button type="submit" id="submit">Aceptar</button>
+            </form>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

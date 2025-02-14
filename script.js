@@ -2,6 +2,7 @@
 //seleccion de elementos
 
 const nuevaTarea = document.querySelector('.nueva-tarea');
+const editarTarea = document.querySelector('.editar-tarea');
 const btnCrearTarea = document.querySelector('.btn-crear');
 const btnCerrarVentana = document.querySelector('.btn-cerrar');
 const formTarea = document.querySelector('.form-tarea');
@@ -66,22 +67,39 @@ function renderTask(tarea){
 
     const btnEdit = newTask.querySelector(".btn-editar");
     btnEdit.addEventListener('click', () => {
-        nuevaTarea.style.display = "block";
-        const name = document.querySelector('#name').setAttribute("value", `${tarea.name}`);
-        const fecha = document.querySelector('#fecha_limite').setAttribute("value", `${tarea.date}`);
-        const descripcion = document.querySelector('#descripcion'); 
-        descripcion.innerHTML = `${tarea.description}` 
+        editarTarea.style.display = "block";
+
+        const editForm = document.querySelector(".editar-tarea .form-tarea");
+
+        document.querySelector('#edit-name').value = tarea.name;
+        document.querySelector('#edit_fecha_limite').value = tarea.date;
+        document.querySelector("#edit-descripcion").value = tarea.description; 
         
-        formTarea.addEventListener('submit', (event) => {                          
-            newTask.remove();
+        const newEditForm = editForm.cloneNode(true);
+        editForm.parentNode.replaceChild(newEditForm, editForm);
+
+        newEditForm.addEventListener('submit', (event) => {                          
+            event.preventDefault();
+            
+            
+            
             const index = tareas.findIndex(t => 
                 t.name === tarea.name && 
                 t.date === tarea.date && 
                 t.description === tarea.description
-            );    
+            );
+            
+
             if (index !== -1) {
-            tareas.splice(index, 1);
+            tareas[index].name = document.querySelector("#edit-name").value;
+            tareas[index].date = document.querySelector("#edit_fecha_limite").value;
+            tareas[index].description = document.querySelector("#edit-descripcion").value;
+
             localStorage.setItem("tareas", JSON.stringify(tareas));
+
+            display.innerHTML = "";
+            loadTask();
+            editarTarea.style.display = "none";
             }  
             });            
     });
