@@ -1,4 +1,8 @@
+import { isThisWeek, isToday, format, parseISO, compareAsc } from 'https://esm.sh/date-fns';
+
 'use strict';
+
+
 //seleccion de elementos
 
 const nuevaTarea = document.querySelector('.nueva-tarea');
@@ -7,6 +11,7 @@ const btnCrearTarea = document.querySelector('.btn-crear');
 const btnCerrarVentana = document.querySelector('.btn-cerrar');
 const formTarea = document.querySelector('.form-tarea');
 const display = document.querySelector('.display');
+const radio = document.querySelector(".fecha_pendiente");
 
 
 // Manejo de abrir y cerrar ventana de creacion de tareas
@@ -22,6 +27,7 @@ btnCerrarVentana.addEventListener("click", () => {
 });
 
 //Logica de creacion de tareas
+
 
 const tareas = JSON.parse(localStorage.getItem("tareas")) || []; 
 
@@ -128,7 +134,53 @@ event.preventDefault();
     
 });
 
+
+
+// prohibe seleccionar fechas pasadas
+const today = new Date().toISOString().split('T')[0];
+
+
+document.getElementById('fecha_limite').setAttribute('min', today);
+
+
+//Organizar las tareas por fecha
+
+function filtrarHoy(tareas) {
+    return tareas.filter(tarea => isToday(parseISO(tarea.date)));
+}
+
+function filtrarSemana(tareas){
+    return tareas.filter(tarea => isThisWeek(parseISO(tarea.date)));
+}
+
+function mostrarTodas(tareas){
+    return tareas;
+}
+
+function manejoCambio(event) {
+    const filtro = event.target.value;
+    let tareasFiltradas;
+    
+    if (filtro === "hoy") {
+        tareasFiltradas = filtrarHoy(tareas);
+    } else if (filtro === "semana") {
+        tareasFiltradas = filtrarSemana(tareas);
+    } else {
+        tareasFiltradas = mostrarTodas(tareas);
+    }
+    display.innerHTML = "";     
+    tareasFiltradas.forEach(renderTask);
+}
+
+document.querySelectorAll('input[type="radio"]').forEach(radio => {
+    radio.addEventListener("change", manejoCambio);
+});
+
+
+
+
 loadTask();
+
 
 
 
