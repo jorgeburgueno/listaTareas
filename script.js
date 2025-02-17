@@ -17,14 +17,24 @@ const radio = document.querySelector(".fecha_pendiente");
 // Manejo de abrir y cerrar ventana de creacion de tareas
 
 btnCrearTarea.addEventListener("click", () => {
-    nuevaTarea.style.display = "block";
+    
+    nuevaTarea.style.display = 'flex';
+      display.classList.add('blur');
     
 });
 
 btnCerrarVentana.addEventListener("click", () => {
     nuevaTarea.style.display = "none"; 
-    formTarea.reset();   
+    display.classList.remove('blur');
+      
 });
+
+display.addEventListener('click', (e) => {    
+    if (e.target === display) {
+        nuevaTarea.style.display = 'none';
+      display.classList.remove('blur');
+    }
+  });
 
 //Logica de creacion de tareas
 
@@ -129,6 +139,7 @@ event.preventDefault();
     addTask(tarea);    
     formTarea.reset();
     nuevaTarea.style.display = "none";
+    display.classList.remove('blur');
     console.log(tareas);     
     
     
@@ -172,9 +183,7 @@ function manejoCambio(event) {
     tareasFiltradas.forEach(renderTask);
 }
 
-document.querySelectorAll('input[type="radio"]').forEach(radio => {
-    radio.addEventListener("change", manejoCambio);
-});
+document.querySelector('.area-tareas').addEventListener('change', manejoCambio);
 
 
 
