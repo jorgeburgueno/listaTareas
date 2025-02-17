@@ -52,14 +52,27 @@ function addTask(tarea) {
 function renderTask(tarea){
     const newTask = document.createElement('div');
     newTask.classList.add('task');
-    newTask.innerHTML = `
-    <strong>${tarea.name}</strong> 
-    <p>Fecha límite: ${tarea.date}</p>
-    <p>${tarea.description}</p>
+    newTask.innerHTML = `<div class="task-info">
+    <p class="task-name">${tarea.name}</p> 
+    <p class="task-fecha">Fecha límite: ${tarea.date}</p>
+    <p class="task-desc">${tarea.description}</p>
+     </div>
+     <div class="task-actions">
     <button class="btn-editar">EDITAR</button>
-    <button class="btn-delete">ELIMINAR</button>
+    <button class="btn-delete">🗑</button>
+    </div>
 `;
     display.appendChild(newTask);  
+
+    //Esconde descripcion y la muestra al darle click
+    const taskInfo = newTask.querySelector('.task-info');
+    const desc = newTask.querySelector('.task-desc');
+
+    desc.style.display = 'none';
+
+    taskInfo.addEventListener('click', () => {
+    desc.style.display = (desc.style.display === 'none') ? 'block' : 'none';
+    });
 
     //Borrar tareas
 
@@ -148,10 +161,12 @@ event.preventDefault();
 
 
 // prohibe seleccionar fechas pasadas
-const today = new Date().toISOString().split('T')[0];
+const now = new Date();
+const localISOTime = new Date(now.getTime() - now.getTimezoneOffset() * 60000)
+  .toISOString()
+  .split('T')[0];
 
-
-document.getElementById('fecha_limite').setAttribute('min', today);
+document.getElementById('fecha_limite').setAttribute('min', localISOTime);
 
 
 //Organizar las tareas por fecha
